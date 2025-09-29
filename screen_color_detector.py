@@ -48,6 +48,7 @@ class Color:
         )
 
 
+
 @dataclass(frozen=True)
 class AppConfig:
     """Глобальные настройки приложения, загружаемые из JSON."""
@@ -200,9 +201,11 @@ def describe_hotkey(vk_code: int | None) -> str:
     return f"0x{vk_code:02X}"
 
 
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(
         description="Отслеживает центральный пиксель и выполняет один левый клик при совпадении цвета.",
+
     )
     parser.add_argument(
         "--color",
@@ -216,16 +219,19 @@ def main(argv: list[str]) -> int:
         type=Path,
         default=Path("color_config.json"),
         help="Путь к JSON-конфигу с настройками (по умолчанию color_config.json).",
+
     )
     parser.add_argument(
         "--tolerance",
         type=int,
         help="Допустимое отклонение по каждому каналу (приоритет над конфигом)",
+
     )
     parser.add_argument(
         "--interval",
         type=float,
         help="Интервал между проверками в секундах (приоритет над конфигом)",
+
     )
     parser.add_argument(
         "--jitter",
@@ -279,6 +285,7 @@ def main(argv: list[str]) -> int:
     else:
         enabled = args.start_enabled
 
+
     with mss() as sct:
         monitor = sct.monitors[0]
         center_x = monitor["left"] + monitor["width"] // 2
@@ -326,6 +333,7 @@ def main(argv: list[str]) -> int:
                         trigger_delay=trigger_delay,
                     )
                     print("Левый клик выполнен. Завершение работы.")
+
                     return 0
                 time.sleep(interval)
         except KeyboardInterrupt:
