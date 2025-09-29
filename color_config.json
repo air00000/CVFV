@@ -1,0 +1,12 @@
+{
+  "color": {
+    "r": 255,
+    "g": 0,
+    "b": 0
+  },
+  "trigger_hotkey": "0xA0",
+  "base_delay": 0.01,
+  "trigger_delay": 40,
+  "color_tolerance": 70,
+  "always_enabled": false
+}
